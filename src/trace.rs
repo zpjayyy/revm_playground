@@ -12,7 +12,7 @@ use ethers_providers::{Provider, Ws};
 use log::info;
 
 pub async fn mempool_watching(target_address: String) -> Result<()> {
-    let wss_url = std::env::var("wss_url").unwrap();
+    let wss_url = std::env::var("WSS_URL").unwrap();
     let provider = Provider::<Ws>::connect(wss_url).await?;
     let provider = Arc::new(provider);
 
@@ -22,9 +22,9 @@ pub async fn mempool_watching(target_address: String) -> Result<()> {
     let pools = DashMap::new();
     let dexes_data = [(
         // UNISWAP V3
-        "0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD",
+        "0x1F98431c8aD98523631AE4a59f267346ea31F984",
         DexVariant::UniswapV3,
-        12369621u64
+        4734394u64
     )];
 
     let dexes: Vec<_> = dexes_data

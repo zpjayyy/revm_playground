@@ -5,6 +5,7 @@ use fern::colors::{Color, ColoredLevelConfig};
 use log::LevelFilter;
 use anyhow::Result;
 use anyhow::Ok;
+use revm_playground::trace::mempool_watching;
 
 pub fn setup_logger() -> Result<()> {
     let colors = ColoredLevelConfig {
@@ -34,10 +35,10 @@ pub fn setup_logger() -> Result<()> {
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    println!("Hello, world!");
     dotenv::dotenv().ok();
     setup_logger()?;
 
-    let weth = String::from("0x7b79995e5f793a07bc00c21412e50ecae098e7f9");
+    let weth = String::from("0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2");
+    mempool_watching(weth).await?;
     Ok(())
 }
